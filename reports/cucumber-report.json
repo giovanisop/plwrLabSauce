@@ -1,0 +1,250 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login;successful-login",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Successful login",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 286797776
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am on the login page",
+            "match": {
+              "location": "features/steps/stLogin.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 547014198
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I enter valid \"standard_user\" and \"secret_sauce\"",
+            "match": {
+              "location": "features/steps/stLogin.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31409556
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "I click the login button",
+            "match": {
+              "location": "features/steps/stLogin.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 41764820
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should be redirected to the inventory page \"https://www.saucedemo.com/inventory.html\"",
+            "match": {
+              "location": "features/steps/stLogin.js:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10878805
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 66791561
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login;invalid-user",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Invalid User",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 284023320
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "I am on the login page",
+            "match": {
+              "location": "features/steps/stLogin.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 355065241
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I enter an invalid \"locked_out_user\" and \"secret_sauce\"",
+            "match": {
+              "location": "features/steps/stLogin.js:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28634618
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "I click the login button",
+            "match": {
+              "location": "features/steps/stLogin.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23217166
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "I should be able to see error message \"Epic sadface: Sorry, this user has been locked out.\"",
+            "match": {
+              "location": "features/steps/stLogin.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24671929
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 53630160
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login;invalid-user",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Invalid User",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 279073308
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "I am on the login page",
+            "match": {
+              "location": "features/steps/stLogin.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 343125913
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I enter an invalid \"invalid\" and \"invalid\"",
+            "match": {
+              "location": "features/steps/stLogin.js:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26526675
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "I click the login button",
+            "match": {
+              "location": "features/steps/stLogin.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25441822
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "I should be able to see error message \"Epic sadface: Username and password do not match any user in this service\"",
+            "match": {
+              "location": "features/steps/stLogin.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12472271
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 60041266
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login",
+    "tags": [],
+    "uri": "features/Login.feature"
+  }
+]
