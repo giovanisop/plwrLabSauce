@@ -1,4 +1,4 @@
-const { expect} = require('@playwright/test');
+const {expect} = require('@playwright/test');
 
 class LoginPage {
     constructor(page) {
@@ -8,6 +8,7 @@ class LoginPage {
         this.loginButton = page.getByRole('button', { name: 'Login' });
         this.loginMessage = page.locator(".error-message-container h3");
         this.errorCloseBtn = this.loginMessage.locator('.error-button');
+        this.productsTitle = page.locator('.title');
         
     }
 
@@ -26,6 +27,7 @@ class LoginPage {
 
     async checkPage(url){
         await expect(this.page).toHaveURL(url);
+        await expect(this.productsTitle).toHaveText('Products');
     }
     
 }
