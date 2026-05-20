@@ -1,13 +1,14 @@
 const {expect} = require('@playwright/test');
 
 class LoginPage {
-    constructor(page) {
+    // accepts an optional attach function from the Cucumber World
+    constructor(page, attach) {
         this.page = page;
+        this.attach = attach; // will be a bound function from hooks (this.attach.bind(this))
         this.usernameInput = page.getByRole('textbox', { name: 'Username' });
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
         this.loginMessage = page.locator(".error-message-container h3");
-        this.errorCloseBtn = this.loginMessage.locator('.error-button');
         this.productsTitle = page.locator('.title');
         
     }
@@ -22,7 +23,6 @@ class LoginPage {
 
     async getLoginMessage(message) {
         await expect(this.loginMessage).toHaveText(message);
-        await this.errorCloseBtn.click();
     }
 
     async checkPage(url){

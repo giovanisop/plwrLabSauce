@@ -26,6 +26,7 @@ When('I enter an invalid {string} and {string}', async function (username, passw
 
 Then('I should be able to see error message {string}', async function (message) {
     await loginPage.getLoginMessage(message);
+
 });
 
 When('I enter password {string} and leave username empty', async function (password) {
