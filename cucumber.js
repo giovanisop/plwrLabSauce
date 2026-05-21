@@ -4,8 +4,11 @@ module.exports = {
   default: {
     require: ['features/steps/**/*.js', 'features/hooks/**/*.js'],
 
-    paths: ['features/**/*.feature'],
-    timeout: 100 * 1000,
+    //on paths put the sequence of features needed to run
+    paths: [
+      'features/Login.feature',
+      'features/Purchase.feature'
+    ],
     publishQuiet: true,
     format: [
             '@cucumber/pretty-formatter',

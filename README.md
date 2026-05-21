@@ -29,15 +29,11 @@ PLWRLABSAUCE/
 │       └── playwright.yml       # CI/CD pipeline definition
 ├── features/
 │   ├── steps/                   # Step definitions (Gherkin → Playwright)
-│   │   └── stLogin.js
 │   ├── hooks/                   # Before/After hooks (browser setup/teardown)
-│   │   └── hooks.js
-│   └── login.feature            # Gherkin scenarios
+│   └── *.feature                # Gherkin scenarios
 ├── pages/                       # Page Object Model classes
-│   └── LoginPage.js
 ├── reports/                     # Test execution reports (gitignored)
 ├── cucumber.js                  # Cucumber configuration
-├── playwright.config.js         # Playwright configuration
 └── package.json
 ```
 
@@ -67,7 +63,7 @@ PLWRLABSAUCE/
 ```bash
 # Clone the repository
 git clone https://github.com/giovanisop/plwrLabSauce.git
-cd PLWRLABSAUCE
+cd plwrLabSauce
 
 # Install dependencies
 npm ci
@@ -86,7 +82,7 @@ npx cucumber-js
 npx cucumber-js features/login.feature
 ```
 
-Reports are generated at `reports/cucumber-report.json` after each run.
+Reports are generated at `reports/cucumber-report.html` after each run.
 
 ---
 
