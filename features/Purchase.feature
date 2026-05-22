@@ -7,7 +7,7 @@ Feature: Purchase
         When I click the add to cart button for the item "<ItemDescription>"
         Then I should be able to see the cart icon displaying one item was added
         When I click on the cart icon
-        And I should be able to see the item "<ItemDescription>" in the cart page
+        Then I should be able to see the item "<ItemDescription>" in the cart page
     Examples:
     | ItemDescription          | ItemQty |   
     | Sauce Labs Bolt T-Shirt  | 0       | 

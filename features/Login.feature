@@ -1,5 +1,6 @@
 Feature: Login
 
+    @login
     Scenario: Invalid User 
         Given I am on the login page
         When I enter an invalid "<username>" and "<password>"
@@ -10,6 +11,7 @@ Feature: Login
     | locked_out_user   | secret_sauce  | Epic sadface: Sorry, this user has been locked out.                        |
     | invalid           | invalid       | Epic sadface: Username and password do not match any user in this service  |
 
+    @login
     Scenario: No User inserted but password inserted
         Given I am on the login page
         When I enter password "<password>" and leave username empty
@@ -19,6 +21,7 @@ Feature: Login
     | password      | loginMessage                       |
     | secret_sauce  | Epic sadface: Username is required | 
 
+    @login
     Scenario: No information inserted
         Given I am on the login page
         When I leave username and password empty
@@ -28,6 +31,7 @@ Feature: Login
     | loginMessage                       |
     | Epic sadface: Username is required | 
 
+    @login
     Scenario: No password inserted
         Given I am on the login page
         When I enter username "<username>" and leave password empty
@@ -37,6 +41,7 @@ Feature: Login
     | username      | loginMessage                       |
     | standard_user | Epic sadface: Password is required | 
 
+    @login
     Scenario: Successful login 
         Given I am on the login page
         When I enter valid "<username>" and "<password>"

@@ -2,7 +2,10 @@
 
 module.exports = {
   default: {
-    require: ['features/steps/**/*.js', 'features/hooks/**/*.js'],
+    require: [
+        'features/steps/**/*.js', 
+        'features/hooks/**/*.js'
+    ],
 
     //on paths put the sequence of features needed to run
     paths: [
