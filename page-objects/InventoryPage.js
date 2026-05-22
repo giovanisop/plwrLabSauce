@@ -9,6 +9,7 @@ class InventoryPage {
         this.productsTitle = page.locator('.title');
     }
     async checkItem(item){
+        await this.inventoryItems.first().waitFor();
         await expect(this.inventoryItems.filter({ hasText: item })).toBeVisible();
     }
 
