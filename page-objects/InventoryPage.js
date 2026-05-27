@@ -1,20 +1,16 @@
 const {expect} = require('@playwright/test');
+const { ModelPage } = require('./ModelPage');
 
-class InventoryPage {
+class InventoryPage extends ModelPage {
     constructor(page) {
-        this.page = page;
-        this.inventoryItems = page.locator('.inventory_item');
+        super(page);
         this.cartBadge = page.locator('.shopping_cart_badge');
         this.cartButton = page.locator('.shopping_cart_link');
         this.productsTitle = page.locator('.title');
     }
-    async checkItem(item){
-        await this.inventoryItems.first().waitFor();
-        await expect(this.inventoryItems.filter({ hasText: item })).toBeVisible();
-    }
 
     async addToCart(item){
-        const itemCard = await this.inventoryItems.filter({ hasText: item });
+        const itemCard = await this.itemList.filter({ hasText: item });
         await itemCard.getByRole('button', { name: 'Add to cart' }).click();
     }
 

@@ -3,10 +3,13 @@ const { chromium } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
 
-const storageStatePath = path.join(__dirname, '..', '..', 'storageState.json');
+const workerId = process.env.CUCUMBER_WORKER_ID ?? '0';
+const storageStatePath = path.join(__dirname, '..', '..', `storageState-${workerId}.json`);
+//creation of one storageState per worker to avoid conflicts on parallel exec.
+
 setDefaultTimeout(20 * 1000);
 
-// Save the login into storageStato to assist multiple workers to go on on non-login scenarios
+// Save the login into storageState to assist multiple workers to go on on non-login scenarios
 
 BeforeAll(async function () {
     const browser = await chromium.launch();

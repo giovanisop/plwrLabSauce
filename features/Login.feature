@@ -3,7 +3,7 @@ Feature: Login
     @login
     Scenario: Invalid User 
         Given I am on the login page
-        When I enter an invalid "<username>" and "<password>"
+        When I enter an username "<username>" and password "<password>"
         And I click the login button
         Then I should be able to see error message "<loginMessage>"
     Examples:
@@ -14,37 +14,37 @@ Feature: Login
     @login
     Scenario: No User inserted but password inserted
         Given I am on the login page
-        When I enter password "<password>" and leave username empty
+        When I enter an username "<username>" and password "<password>"
         And I click the login button
         Then I should be able to see error message "<loginMessage>"
     Examples:
-    | password      | loginMessage                       |
-    | secret_sauce  | Epic sadface: Username is required | 
+    | username      | password      | loginMessage                       |
+    |               | secret_sauce  | Epic sadface: Username is required | 
 
     @login
     Scenario: No information inserted
         Given I am on the login page
-        When I leave username and password empty
+        When I enter an username "<username>" and password "<password>"
         And I click the login button
         Then I should be able to see error message "<loginMessage>"
     Examples:
-    | loginMessage                       |
-    | Epic sadface: Username is required | 
+    | username      | password      | loginMessage                       |
+    |               |               | Epic sadface: Username is required | 
 
     @login
     Scenario: No password inserted
         Given I am on the login page
-        When I enter username "<username>" and leave password empty
+        When I enter an username "<username>" and password "<password>"
         And I click the login button
         Then I should be able to see error message "<loginMessage>"
     Examples:
-    | username      | loginMessage                       |
-    | standard_user | Epic sadface: Password is required | 
+    | username      | password      | loginMessage                       |
+    | standard_user |               | Epic sadface: Password is required | 
 
     @login
     Scenario: Successful login 
         Given I am on the login page
-        When I enter valid "<username>" and "<password>"
+        When I enter an username "<username>" and password "<password>"
         And I click the login button
         Then I should be redirected to the inventory page "<inventoryPageUrl>"
     Examples:

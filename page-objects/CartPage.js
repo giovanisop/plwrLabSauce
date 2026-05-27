@@ -1,22 +1,20 @@
 const {expect} = require('@playwright/test');
+const { ModelPage } = require('./ModelPage');
 
-class CartPage {
+class CartPage extends ModelPage {
     constructor(page) {
-        this.page = page;
-        this.cartItems = page.locator('.cart_item');
+        super(page);
         this.removeButtons = page.getByRole('button', { name: 'Remove' });
         this.continueButton = page.getByRole('button', { name: 'Continue Shopping' });
         this.checkoutButton = page.getByRole('button', { name: 'Checkout' });
     }
 
-    async checkCartItem(item){
-        await expect(this.cartItems.filter({ hasText: item })).toBeVisible();
-    }
-
     async continueShopping(){
         await this.continueButton.click();
     }
-    
+    async checkNoItems(){  
+        await expect(this.itemList).toBeHidden();
+    }
 
 }
 module.exports = {CartPage};

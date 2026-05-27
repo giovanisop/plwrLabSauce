@@ -30,8 +30,9 @@ PLWRLABSAUCE/
 ├── features/
 │   ├── steps/                   # Step definitions (Gherkin → Playwright)
 │   ├── hooks/                   # Before/After hooks (browser setup/teardown)
-│   └── *.feature                # Gherkin scenarios
-├── pages/                       # Page Object Model classes
+│   ├── Login.feature            # Login scenarios (tagged @login)
+│   └── Purchase.feature         # Cart and purchase scenarios
+├── page-objects/                # Page Object Model classes
 ├── reports/                     # Test execution reports (gitignored)
 ├── cucumber.js                  # Cucumber configuration
 └── package.json
@@ -41,13 +42,19 @@ PLWRLABSAUCE/
 
 ## ✅ Test Scenarios Covered
 
-### Login
-- [ ] Successful login with valid credentials
-- [ ] Login attempt with invalid password
-- [ ] Login attempt with locked out user
-- [ ] Login with empty fields
+### Login (`@login`)
+- [x] Successful login with valid credentials
+- [x] Login attempt with invalid credentials
+- [x] Login attempt with locked out user
+- [x] Login with empty username
+- [x] Login with empty password
 
-> More modules (Inventory, Cart, Checkout) coming soon.
+### Purchase
+- [x] Add an item to cart
+- [x] Return to inventory page from cart page
+- [x] Remove an item from cart on product page
+- [x] Remove an item from cart on cart page
+- [x] Add two items to cart
 
 ---
 
@@ -79,7 +86,13 @@ npx playwright install --with-deps
 npx cucumber-js
 
 # Run a specific feature
-npx cucumber-js features/login.feature
+npx cucumber-js features/Login.feature
+
+# Run only login scenarios
+npx cucumber-js --tags @login
+
+# Run only non-login scenarios (uses storageState)
+npx cucumber-js --tags "not @login"
 ```
 
 Reports are generated at `reports/cucumber-report.html` after each run.
@@ -107,7 +120,19 @@ Every push and pull request to `main`/`master` triggers the GitHub Actions pipel
 - `.feature` files own the *what* (business behavior)
 - Step definitions own the *mapping* (Gherkin → code)
 - Page Objects own the *how* (UI interactions)
-- Hooks own the *lifecycle* (browser open/close)
+- Hooks own the *lifecycle* (browser open/close, session management)
+
+**Hook strategy with storageState for parallel workers**: Most scenarios require an authenticated session but should not re-test the login flow — that would be redundant and slow. At the same time, running parallel workers with a single shared session file causes race conditions. The solution works in three layers:
+
+1. **`BeforeAll`** — runs once per worker before any scenario. It launches a dedicated browser, performs a real login against the app, and persists the resulting cookies and local storage to `storageState-{CUCUMBER_WORKER_ID}.json`. Each worker gets its own file, so parallel execution has no contention.
+
+2. **`Before { not @login }`** — for every scenario that is not tagged `@login`, the hook creates a browser context that loads that worker's `storageState` file. The scenario starts already authenticated, avoiding a full login round-trip on every test.
+
+3. **`Before { @login }`** — login scenarios get a completely fresh context with no `storageState`. This ensures the login feature tests the real authentication flow end-to-end and is never accidentally short-circuited by a pre-loaded session.
+
+4. **`AfterAll`** — deletes the worker's `storageState` file after the suite finishes, so the next CI run always starts from a clean state.
+
+The `@login` tag is therefore a functional signal, not just a label: its presence or absence determines which browser context a scenario receives and whether stored authentication is applied.
 
 ---
 
