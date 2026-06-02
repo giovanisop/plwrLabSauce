@@ -15,6 +15,9 @@ class CartPage extends ModelPage {
     async checkNoItems(){  
         await expect(this.itemList).toBeHidden();
     }
+    async checkout(){
+        await this.checkoutButton.click();
+    }
 
 }
 module.exports = {CartPage};

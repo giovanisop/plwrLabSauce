@@ -3,14 +3,16 @@
 module.exports = {
   default: {
     require: [
-        'features/steps/**/*.js', 
-        'features/hooks/**/*.js'
+        'features/steps/**/*.steps.js', 
+        'features/hooks/**/*.js',
+        'utils/*.js'
     ],
 
     //on paths put the sequence of features needed to run
     paths: [
       'features/Login.feature',
-      'features/Purchase.feature'
+      'features/Purchase.feature',
+      'features/Checkout.feature'
     ],
     publishQuiet: true,
     format: [

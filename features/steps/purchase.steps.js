@@ -25,10 +25,6 @@ Then('I should be able to see the cart icon displaying {string} items', async fu
     await this.inventoryPage.checkCartBadge(count);
 });
 
-Then('I should be able to see the item {string} in the cart page', async function (item) {
-    await this.currentPage.checkItem(item);
-});
-
 When('I click on the continue shopping button', async function () {
     await this.cartPage.continueShopping();
 });

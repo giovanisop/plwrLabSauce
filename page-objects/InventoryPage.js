@@ -6,7 +6,6 @@ class InventoryPage extends ModelPage {
         super(page);
         this.cartBadge = page.locator('.shopping_cart_badge');
         this.cartButton = page.locator('.shopping_cart_link');
-        this.productsTitle = page.locator('.title');
     }
 
     async addToCart(item){
@@ -24,11 +23,6 @@ class InventoryPage extends ModelPage {
 
     async goToCart(){
         await this.cartButton.click();
-    }
-
-    async checkPage(url){
-        await expect(this.page).toHaveURL(url);
-        await expect(this.productsTitle).toHaveText('Products');
     }
 }
 module.exports = {InventoryPage};
