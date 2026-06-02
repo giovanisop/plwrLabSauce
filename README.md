@@ -26,15 +26,29 @@ End-to-end test suite for the [Sauce Demo](https://www.saucedemo.com) applicatio
 PLWRLABSAUCE/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml       # CI/CD pipeline definition
+│       └── playwright.yml            # CI/CD pipeline definition
 ├── features/
-│   ├── steps/                   # Step definitions (Gherkin → Playwright)
-│   ├── hooks/                   # Before/After hooks (browser setup/teardown)
-│   ├── Login.feature            # Login scenarios (tagged @login)
-│   └── Purchase.feature         # Cart and purchase scenarios
-├── page-objects/                # Page Object Model classes
-├── reports/                     # Test execution reports (gitignored)
-├── cucumber.js                  # Cucumber configuration
+│   ├── steps/                        # Step definitions (Gherkin → Playwright)
+│   │   ├── login.steps.js
+│   │   ├── purchase.steps.js
+│   │   ├── checkout.steps.js
+│   │   └── common.steps.js           # Shared steps (e.g. page redirect assertion)
+│   ├── hooks/                        # Before/After hooks (browser setup/teardown)
+│   ├── Login.feature                 # Login scenarios (tagged @login)
+│   ├── Purchase.feature              # Cart and purchase scenarios
+│   └── Checkout.feature              # End-to-end checkout scenarios
+├── page-objects/                     # Page Object Model classes
+│   ├── ModelPage.js                  # Base class with shared locators/assertions
+│   ├── LoginPage.js
+│   ├── InventoryPage.js
+│   ├── CartPage.js
+│   ├── CheckoutUserInfoPage.js
+│   ├── CheckoutOverviewPage.js
+│   └── CheckoutCompletePage.js
+├── utils/
+│   └── pageRegistry.js               # Maps page titles to Page Object classes
+├── reports/                          # Test execution reports (gitignored)
+├── cucumber.js                       # Cucumber configuration
 └── package.json
 ```
 
@@ -55,6 +69,13 @@ PLWRLABSAUCE/
 - [x] Remove an item from cart on product page
 - [x] Remove an item from cart on cart page
 - [x] Add two items to cart
+
+### Checkout
+- [x] Navigate to checkout from cart
+- [x] Complete checkout for a single item (full happy path: user info → overview → confirmation → back home)
+- [x] Complete checkout for two items (price sum verification included)
+- [x] Cancel checkout from user information page (returns to cart, item preserved)
+- [x] Cancel checkout from overview page (returns to inventory, item visible)
 
 ---
 
