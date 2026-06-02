@@ -1,4 +1,4 @@
-# 🎭 plrwLabSauce — Playwright + Cucumber Test Suite
+# 🎭 plwrLabSauce — Playwright + Cucumber Test Suite
 
 ![Node.js](https://img.shields.io/badge/Node.js-24-339933?style=flat-square&logo=node.js&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-latest-2EAD33?style=flat-square&logo=playwright&logoColor=white)
